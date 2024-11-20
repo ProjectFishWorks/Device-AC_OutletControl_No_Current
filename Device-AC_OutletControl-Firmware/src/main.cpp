@@ -11,7 +11,7 @@
 #define RELAY_1_NC_PIN 0
 #define RELAY_2_NO_PIN 1
 
-#define NODE_ID 164                        // 164
+#define NODE_ID 166                        // 164
 #define RELAY_1_NC_MESSAGE_ID 0x0A00       // 2560
 #define RELAY_2_NO_MESSAGE_ID 0x0A01       // 2561
 #define CURRENT_MESSAGE_ID 0x0A02          // 2562
@@ -79,12 +79,12 @@ void setup()
   pinMode(1, OUTPUT);
 
   // Initialize I2C and ADS1115
-  Wire.begin(I2C_SDA, I2C_SCL); // 
-  ads.setGain(GAIN_FOUR); // +/- 1.024V 1bit = 0.5mV
-  ads.setDataRate(RATE_ADS1115_128SPS); // 250 samples per second
-  ads.begin();
-  Serial.println("Getting data rate");
-  Serial.println(ads.getDataRate());
+  //Wire.begin(I2C_SDA, I2C_SCL); // 
+  //ads.setGain(GAIN_FOUR); // +/- 1.024V 1bit = 0.5mV
+  //ads.setDataRate(RATE_ADS1115_128SPS); // 250 samples per second
+  //ads.begin();
+  //Serial.println("Getting data rate");
+  //Serial.println(ads.getDataRate());
 
 
   // Initialize NeoPixel
@@ -100,7 +100,7 @@ void setup()
   pixels.show();
 
   // Create a task to get the current
-  xTaskCreate(getcurrent, "getcurrent", 4096, NULL, 1, NULL);
+ // xTaskCreate(getcurrent, "getcurrent", 4096, NULL, 1, NULL);
   core.sendMessage(RELAY_1_IN_ALERT_MESSAGE_ID, (uint64_t)0);
   core.sendMessage(RELAY_2_IN_ALERT_MESSAGE_ID, (uint64_t)0);
 }
